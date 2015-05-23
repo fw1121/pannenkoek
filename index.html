@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Pannenkoek by twbattaglia</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Pannenkoek</h1>
+      <h2 class="project-tagline">A tool for generating LEfSe ready data from an OTU table and mapping file. Sample metadata is added as a new row based on user inputs.</h2>
+      <a href="https://github.com/twbattaglia/pannenkoek" class="btn">View on GitHub</a>
+      <a href="https://github.com/twbattaglia/pannenkoek/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/twbattaglia/pannenkoek/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="pannenkoek" class="anchor" href="#pannenkoek" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong>Pannenkoek</strong>
+</h1>
+
+<p>v0.1.6  </p>
+
+<p>Subset a Qiime biom file to LEfSe-ready format</p>
+
+<p>A tool to create LEfSe-ready tables from your main OTU table in QIIME. LEfSe is a great tool for microbial diversity analysis, but there are many repetitive steps if you want to analyze multiple time points between two groups. Pannenkoek was made to simplify that process. You can input your main OTU biom file, Treatment group column name and Timepoint column name and it will do the hard work summarizing the table, removing the unused metadata fields, and create multiple tables based on time.</p>
+
+<h2>
+<a id="get-started" class="anchor" href="#get-started" aria-hidden="true"><span class="octicon octicon-link"></span></a>Get Started</h2>
+
+<p>Highly recommend using pip as it will install all other necessary dependencies.</p>
+
+<pre><code>
+pip install https://github.com/twbattaglia/pannenkoek/zipball/master
+
+</code></pre>
+
+<h2>
+<a id="dependencies" class="anchor" href="#dependencies" aria-hidden="true"><span class="octicon octicon-link"></span></a>Dependencies</h2>
+
+<p>R has to be initialized from the command line first to install packages. So just run R. (seriously)  </p>
+
+<pre><code>
+
+# 1) Initialize R in terminal by running the command 'R'
+$ R
+
+# 2) Run the command below to install the necessary packages. You may get an error stating, 'packages ‘splines’, ‘stats4’ are not available (as a binary package for R version 3.1.3)' but this can be ignored.
+$ install.packages(c('splines','stats4','survival','mvtnorm','modeltools','coin','MASS'), repos = "http://cran.us.r-project.org")
+
+
+
+</code></pre>
+
+<p>Start a new terminal session to exit out of R</p>
+
+<h3>
+<a id="running-the-command" class="anchor" href="#running-the-command" aria-hidden="true"><span class="octicon octicon-link"></span></a>Running the Command</h3>
+
+<pre><code>#!bash
+# Example Command
+pannenkoek.py -i INPUT_BIOM.biom -o OUTPUT_FOLDER/ -m MAPPING_FILE.txt -level 7
+-class colTreatment -split colDay -compare CON,Group1 -a 0.01
+
+</code></pre>
+
+<pre><code>#!python
+
+
+usage: pannenkoek.py [-h] [-i INPUT] [-o OUTPUT] [-m MAPPING] [-s SUBJECTID]
+                     [-c CLASSID] [-sc -subclass SUBCLASSID] [-l LEVEL]
+                     [-spl SPLITBY] [-comp COMPARE] [--no_lefse]
+                     [-a ANOVA_CUTOFF] [-e LDA_CUTOFF] [-strict STRICTNESS]
+
+Summarize taxa and subset by time.
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -i INPUT, -input INPUT
+                        Location of the Biom/OTU file to subset and use for
+                        LEfSe analysis.(Must be .biom format)
+  -o OUTPUT, -output OUTPUT
+                        Directory to place all the files.
+  -m MAPPING, -map MAPPING
+                        Location of the mapping file associated with Biom
+                        File.
+  -s SUBJECTID, -subject SUBJECTID
+                        By Default = #SampleID. Only change if your SampleID
+                        header differs.
+  -c CLASSID, -class CLASSID
+                        This will be the column within your mapping file that
+                        has the data which differentiates between groups. This
+                        is typically the Treatment column of your data. When
+                        formatting the data for LEfSe analysis, this will be
+                        the column used as a class. When choosing particular
+                        comparisons with "-compare" this classID columns is
+                        where it looks for the variables. Choos wisely.
+  -sc -subclass SUBCLASSID
+                        This will be used in similar way to the classID, but
+                        is typically reserved for another level of
+                        comparisons. See the use of subclasses with LEfSe
+                        data. "http://genomebiology.com/2011/12/6/r60"
+  -l LEVEL, -level LEVEL
+                        level to use for summarize_taxa.py.
+  -spl SPLITBY, -split SPLITBY
+                        This is the column name of the variable to use for
+                        splitting the table. The table is split over a
+                        variable to reduce the amount of work to create a new
+                        formatted lefse table for each timepoint of an
+                        experiment. This is one of the core features of
+                        pannenkoek. Choose the column which will create the
+                        analysis you want.
+  -comp COMPARE, -compare COMPARE
+                        This option lets you select a comparison between
+                        variables found in your provded classID column. For
+                        example if you had 3 different experimental groups and
+                        you wanted to only see the comparisons between Control
+                        and Group2 over time you can input, "Control,Group2"
+                        in this field and it will subset and only include the
+                        sampleIDs that are from either group. This option is
+                        very useful for experiments with multiple groups.
+  --no_lefse            If you only want subsetted tables and no formatted or
+                        lefse-run data, add this option to the command.
+  -a ANOVA_CUTOFF, -anovap ANOVA_CUTOFF
+                        Change the cutoff for significance between OTUs.
+                        Default is 0.05.
+  -e LDA_CUTOFF, -effect_size LDA_CUTOFF
+                        Change the cutoff for effect size. Default is 2.
+  -strict STRICTNESS, -strictness STRICTNESS
+                        Change the strictness of the comparisons. Can be
+                        changed to less strict(1). Default is 0 (more-strict).
+
+</code></pre>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/twbattaglia/pannenkoek">Pannenkoek</a> is maintained by <a href="https://github.com/twbattaglia">twbattaglia</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+            <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-62277641-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+  </body>
+</html>
+

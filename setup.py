@@ -19,7 +19,7 @@ setup(
     # Project uses reStructuredText, so ensure that the
     # docutils get installed or upgraded on the target
     # machine
-    install_requires = ['qiime', 'rpy2', 'numpy', 'matplotlib', 'argparse', 'pandas', 'biopython'],
+    install_requires = ['rpy2', 'numpy', 'matplotlib', 'argparse', 'pandas', 'biopython'],
 
     package_data = {
         # If any package contains *.txt or *.rst files,
@@ -38,7 +38,7 @@ setup(
     keywords = "Biology Microbiome LEFSE QIIME Formatting Diversity Python Bioinformatics",
 
     # project home page, if any :
-    url = "https://bitbucket.org/twbattaglia/pannenkoek",
+    url = "https://github.com/twbattaglia/pannenkoek",
 
     # could also include long_description, download_url,
     # classifiers, etc.

@@ -57,3 +57,7 @@ docs/_build/
 
 # PyBuilder
 target/
+
+pannenkoek/res/my_script.py
+
+pannenkoek/res/utils.py

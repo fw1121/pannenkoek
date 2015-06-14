@@ -12,9 +12,9 @@ with open(path.join(here, 'DESCRIPTION.rst'), encoding='utf-8') as f:
 setup(
     name = "pannenkoek",
       long_description=long_description,
-    version = "0.1.6",
+    version = "0.1.8",
     packages = find_packages(),
-    scripts = ['scripts/pannenkoek.py'],
+    scripts = ['pannenkoek/pannenkoek.py'],
 
     # Project uses reStructuredText, so ensure that the
     # docutils get installed or upgraded on the target

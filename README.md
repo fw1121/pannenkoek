@@ -36,7 +36,6 @@ Start a new terminal session to exit out of R
 ### Running the Command  
 
 ```
-#!bash
 # Example Command
 pannenkoek.py -i INPUT_BIOM.biom -o OUTPUT_FOLDER/ -m MAPPING_FILE.txt -level 7
 -class colTreatment -split colDay -compare CON,Group1 -a 0.01
@@ -45,7 +44,6 @@ pannenkoek.py -i INPUT_BIOM.biom -o OUTPUT_FOLDER/ -m MAPPING_FILE.txt -level 7
 
 
 ```
-#!python
 
 usage: pannenkoek.py [-h] [-v] [-i INPUT] [-o OUTPUT] [-m MAPPING]
                      [-s SUBJECTID] [-c CLASSID] [-sc SUBCLASSID] [-l LEVEL]

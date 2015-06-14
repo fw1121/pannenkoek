@@ -8,6 +8,7 @@ __pycache__/
 # Distribution / packaging
 .Python
 env/
+pannenkoek/res/
 build/
 develop-eggs/
 dist/

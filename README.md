@@ -42,19 +42,21 @@ pannenkoek.py -i INPUT_BIOM.biom -o OUTPUT_FOLDER/ -m MAPPING_FILE.txt -level 7
 -class colTreatment -split colDay -compare CON,Group1 -a 0.01
 
 ```
+
+
 ```
 #!python
 
-
-usage: pannenkoek.py [-h] [-i INPUT] [-o OUTPUT] [-m MAPPING] [-s SUBJECTID]
-                     [-c CLASSID] [-sc -subclass SUBCLASSID] [-l LEVEL]
-                     [-spl SPLITBY] [-comp COMPARE] [--no_lefse]
+usage: pannenkoek.py [-h] [-v] [-i INPUT] [-o OUTPUT] [-m MAPPING]
+                     [-s SUBJECTID] [-c CLASSID] [-sc SUBCLASSID] [-l LEVEL]
+                     [-spl SPLITBY] [-comp COMPARE] [-t] [-nl]
                      [-a ANOVA_CUTOFF] [-e LDA_CUTOFF] [-strict STRICTNESS]
 
 Summarize taxa and subset by time.
 
 optional arguments:
   -h, --help            show this help message and exit
+  -v, --version         show program's version number and exit
   -i INPUT, -input INPUT
                         Location of the Biom/OTU file to subset and use for
                         LEfSe analysis.(Must be .biom format)
@@ -73,8 +75,8 @@ optional arguments:
                         formatting the data for LEfSe analysis, this will be
                         the column used as a class. When choosing particular
                         comparisons with "-compare" this classID columns is
-                        where it looks for the variables. Choos wisely.
-  -sc -subclass SUBCLASSID
+                        where it looks for the variables. Choose wisely.
+  -sc SUBCLASSID, -subclass SUBCLASSID
                         This will be used in similar way to the classID, but
                         is typically reserved for another level of
                         comparisons. See the use of subclasses with LEfSe
@@ -98,8 +100,11 @@ optional arguments:
                         in this field and it will subset and only include the
                         sampleIDs that are from either group. This option is
                         very useful for experiments with multiple groups.
-  --no_lefse            If you only want subsetted tables and no formatted or
+  -t, --notranspose     If you do not want the data tranposed, add this option
+                        to the command. Default = False
+  -nl, --nolefse        If you only want subsetted tables and no formatted or
                         lefse-run data, add this option to the command.
+                        Default = False
   -a ANOVA_CUTOFF, -anovap ANOVA_CUTOFF
                         Change the cutoff for significance between OTUs.
                         Default is 0.05.
@@ -108,5 +113,4 @@ optional arguments:
   -strict STRICTNESS, -strictness STRICTNESS
                         Change the strictness of the comparisons. Can be
                         changed to less strict(1). Default is 0 (more-strict).
-
 ```

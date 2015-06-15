@@ -181,9 +181,9 @@ def convert2Lefse(input, output, map, level, subjectID, classID, subclassID, com
 
 			# Run formatting script. Take into account for a lack of subclassID
 			if subclassID == "NA":
-				subprocess.call(['pannenkoek/lefse/format_input.py', table_out, format_file_out, '-u 1', '-c 2', '-o 1000000'])
+				subprocess.call(['lefse/format_input.py', table_out, format_file_out, '-u 1', '-c 2', '-o 1000000'])
 			else:
-				subprocess.call(['pannenkoek/lefse/format_input.py', table_out, format_file_out, '-u 1', '-c 2', '-s 3', '-o 1000000'])
+				subprocess.call(['lefse/format_input.py', table_out, format_file_out, '-u 1', '-c 2', '-s 3', '-o 1000000'])
 
 
 			# run lefse output file location
@@ -191,7 +191,7 @@ def convert2Lefse(input, output, map, level, subjectID, classID, subclassID, com
 
 			# Run lefse analysis
 			print("Running LEfSe analysis.")
-			subprocess.call(['pannenkoek/lefse/run_lefse.py', format_file_out, run_file_out, '-a', str(anova_cutoff), '-l', str(lda_cutoff), '-y', str(strictness)])
+			subprocess.call(['lefse/run_lefse.py', format_file_out, run_file_out, '-a', str(anova_cutoff), '-l', str(lda_cutoff), '-y', str(strictness)])
 
 	print ("Finished.")
 

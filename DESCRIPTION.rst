@@ -3,9 +3,11 @@ Pannenkoek
 
 A tool to create lefse ready tables from your main OTU table in QIIME. LEfSe is a great tool for microbial diversity analysis, but there are many repetitive steps if you want to analyze multiple time points between two groups. Pannenkoek was made to simplify that process. You can input your main OTU biom file, Treatment group column name and Timepoint column name and it will do the hard work summarizing the table, removing the unused metadata fields, and create multiple tables based on time.
 
+# v0.1.8
+- removed qiime dependency. fixed location of lefse files.
 
 # v0.1.6
-- needed a new shebang header. 
+- needed a new shebang header.
 
 # v0.1.5
 - bug fix for the bug that was introduced trying to fix a bug fix

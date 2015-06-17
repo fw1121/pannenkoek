@@ -14,7 +14,7 @@ setup(
       long_description=long_description,
     version = "0.1.8",
     packages = find_packages(),
-    scripts = ['pannenkoek/pannenkoek.py'],
+    scripts = ['pannenkoek/pannenkoek.py', 'pannenkoek/lefse/format_input.py', 'pannenkoek/lefse/run_lefse.py'],
 
     # Project uses reStructuredText, so ensure that the
     # docutils get installed or upgraded on the target

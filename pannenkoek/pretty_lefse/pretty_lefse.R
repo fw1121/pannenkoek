@@ -20,12 +20,8 @@ if (!require("reshape")) {
 if (!require("argparse")) {
   install.packages("argparse", repos="http://cran.rstudio.com/") 
 }
-if (!require("gtools")) {
-  install.packages("gtools", repos="http://cran.rstudio.com/") 
-}
 suppressPackageStartupMessages(library(reshape))
 suppressPackageStartupMessages(library(argparse))
-suppressPackageStartupMessages(library(gtools))
 
 
 ## Get Command Line Arguments
@@ -59,9 +55,9 @@ print(paste("Control group name:", args$control))
 
 ## Run Pretty Lefse Function
 # Test Files
-args$input = "/Users/Tom/GoogleDrive/Research/Bioinformatics/anjej_lefse/5.3_genderOTUs/female_con_stat/lefse_output/run_lefse"
-args$output = "/Users/Tom/GoogleDrive/Research/Bioinformatics/anjej_lefse/5.3_genderOTUs/female_con_stat/lefse_output/pretty_lefse"
-args$control = "control_no"
+#args$input = "/Users/Tom/GoogleDrive/Research/Bioinformatics/anjej_lefse/5.3_genderOTUs/female_con_stat/lefse_output/run_lefse"
+#args$output = "/Users/Tom/GoogleDrive/Research/Bioinformatics/anjej_lefse/5.3_genderOTUs/female_con_stat/lefse_output/pretty_lefse"
+#args$control = "control_no"
 
 
 # Import the directory of files

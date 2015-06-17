@@ -1,4 +1,8 @@
 include DESCRIPTION.rst
+include pannenkoek/pretty_lefse/prettylefse.R
+
+
+
 
 # Include the test suite (FIXME: does not work yet)
 # recursive-include tests *

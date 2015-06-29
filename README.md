@@ -1,12 +1,12 @@
 # **Pannenkoek** 
-v0.1.6  
+v0.1.8  
   
-Subset a Qiime biom file to LEfSe-ready format
+Easily go from OTU table to LEfSe results in one step.
 
-A tool to create LEfSe-ready tables from your main OTU table in QIIME. LEfSe is a great tool for microbial diversity analysis, but there are many repetitive steps if you want to analyze multiple time points between two groups. Pannenkoek was made to simplify that process. You can input your main OTU biom file, Treatment group column name and Timepoint column name and it will do the hard work summarizing the table, removing the unused metadata fields, and create multiple tables based on time.
+A tool to create LEfSe-ready tables or results from your main OTU table in QIIME. LEfSe is a great tool for microbial diversity analysis, but there are many repetitive steps if you want to analyze multiple time points between two groups. Pannenkoek was made to simplify that process. You can input your main OTU biom file, Treatment group column name and Timepoint column name and it will do the hard work summarizing the table, removing the unused metadata fields, and create multiple tables based on time.
 
 ## Get Started
-You must either start macqiime in terminal or have qiime installed locally with 'pip install qiime'
+***You must either start macqiime in terminal or have qiime installed locally with 'pip install qiime'***
 
 ```
 
@@ -17,7 +17,7 @@ pip install https://github.com/twbattaglia/pannenkoek/zipball/master
 
 
 ## Dependencies  
-R has to be initialized from the command line first to install packages. So just run R. (seriously)  
+R has to be initialized from the command line first to install packages. Run the command below to install the R dependencies necessary to run LefSe. If you only want to summarize the tables and not run LefSe, you do not need to run the command below.
 ```
 
 
@@ -35,11 +35,11 @@ Start a new terminal session to exit out of R
 
 
 ### Running the Command  
-Enter macqiime environment before running pannenkoek.py
+Enter the macqiime environment before running pannenkoek.py!!
 
 ```
 # Example Command
-pannenkoek.py -i INPUT_BIOM.biom -o OUTPUT_FOLDER/ -m MAPPING_FILE.txt -level 7
+pannenkoek.py -i INPUT_BIOM.biom -o OUTPUT_FOLDER/ -m MAPPING_FILE.txt -level 6
 -class colTreatment -split colDay -compare CON,Group1 -a 0.01
 
 ```

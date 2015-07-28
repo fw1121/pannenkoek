@@ -1,7 +1,7 @@
 # **Pannenkoek** 
 v0.1.8  
 
-# ig thank to Huttenhower/Segata group for developing LEfSe!
+# Big thank to Huttenhower/Segata group for developing LEfSe!
 
 Nicola Segata, Jacques Izard, Levi Walron, Dirk Gevers, Larisa Miropolsky, Wendy Garrett, Curtis Huttenhower.
 "Metagenomic Biomarker Discovery and Explanation"

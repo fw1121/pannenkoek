@@ -1,4 +1,5 @@
 from setuptools import setup, find_packages
+from setuptools.command.install import install
 from codecs import open
 from os import path
 
@@ -7,6 +8,13 @@ from os import path
 here = path.abspath(path.dirname(__file__))
 with open(path.join(here, 'DESCRIPTION.rst'), encoding='utf-8') as f:
     long_description = f.read()
+
+class CustomInstallCommand(install):
+    """Customized setuptools install command - prints a friendly greeting."""
+    def run(self):
+        print "Installing Pannenkoek!"
+        install.run(self)
+
 
 
 setup(
@@ -20,6 +28,12 @@ setup(
     # docutils get installed or upgraded on the target
     # machine
     install_requires = ['rpy2', 'numpy', 'matplotlib', 'argparse', 'pandas', 'biopython'],
+      
+      cmdclass={
+      'install': CustomInstallCommand,
+      },
+      
+      
 
     package_data = {
         # If any package contains *.txt or *.rst files,
